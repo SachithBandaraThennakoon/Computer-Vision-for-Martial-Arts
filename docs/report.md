@@ -6,6 +6,8 @@
 (1) detect fighters, (2) estimate body keypoints, (3) output per-frame **kick/punch/block** probabilities, and (4) overlay a short-term **predicted (dashed) pose**.
 > The emphasis of this report is **Performance** (accuracy/precision/recall/mAP & loss curves), followed by discussion and improvements.
 
+<img width="1366" height="770" alt="image" src="https://github.com/user-attachments/assets/03346b16-5f3a-4d2e-b777-4cfe1c638d5b" />
+
 ---
 
 ## 1. Introduction
@@ -91,6 +93,55 @@ exp_pose_train/, exp_pose_eval/
     Predicted pose is drawn as a **dashed skeleton**.
 
 <img width="640" height="480" alt="image" src= "https://github.com/user-attachments/assets/a4c804da-284c-4641-9c22-a5ef82125b83" />
+
+### 3.4 AI Martial Intelligence
+built a prototype AI system that predicts opponent movement ~0.07 seconds ahead using biomechanics + AI .
+
+* Human reaction time in fighting: ~0.20–0.25s
+
+**AI reacted faster than human reflex. Not just pose prediction — reaction superiority.
+This may be the first spark of machine combat intelligence.**
+
+🔬 Technical System Overview
+Goal: Predict opponent movement ~70ms ahead + classify punch/kick/block in real time
+
+### Pipeline
+
+1) Pose Detection
+
+Real-time keypoint tracking (skeleton joints)
+Body coordinate normalization + timing alignment
+
+2) Feature Engineering
+
+Joint velocities & angular change
+Center-of-mass & stance vectors
+Strike heuristics (hand-to-head, leg elevation)
+EMA smoothing to reduce noise
+
+3) AI + Physics Model ("AI Brain + Biomechanics")
+
+Short-horizon sequence model + motion constraints
+Bone-length preservation
+Torso anchoring & head-path blending
+Constant-velocity micro-extrapolation
+
+4) Output
+
+Future pose prediction: ~70ms (0.07s)
+Action probabilities: Punch / Kick / Block
+
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/7ec69ff6-a1c0-418c-be6d-62aba34b9e8c" />
+
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/4677f012-c9ba-4f02-b08b-3432048d2468" />
+
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/3211a2bb-c8ac-4f7f-b2e2-89e74385d08a" />
+
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/120d76c9-7b52-4a7e-960f-a0b8ef274c35" />
+
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/543f5160-8fe3-4fec-afb3-7f1e12f7ac28" />
+
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/c1d050d1-f595-4198-905f-13a998a7cb0c" />
 
 ---
 
